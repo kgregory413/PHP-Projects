@@ -1,0 +1,119 @@
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+table {
+
+font-family: arial, sans-serif;
+
+border-collapse: collapse;
+
+width: 100%;
+
+}
+
+td, th {
+
+border: 1px solid #dddddd;
+
+text-align: left;
+
+padding: 8px;
+
+}
+
+tr{
+
+background-color: #dddddd;
+
+}
+
+</style>
+
+<title>Display Records</title>
+
+</head>
+
+<body>
+
+<h1>Display Records</h1>
+
+<table>
+
+<tr style='background-color: #fefefe;'>
+
+<th>Amount Billed</th>
+
+<th>Amount Paid</th>
+
+<th>Date Paid</th>
+
+<th>Insurance</th>
+
+</tr>
+
+<?php
+
+$sql = "SELECT * FROM billing ;";
+
+$result = $conn->query($sql);
+
+if($result->num_rows>0){
+
+$i=0;
+
+while($row = $result->fetch_assoc()){
+
+if($i%2==0){
+
+echo "<tr> <td>".$row['billing']."</td>
+
+<td>".$row['amount_billed']."</td>
+
+<td>".$row['amount_paid']."</td>
+
+<td>".$row['date_paid']."</td>
+
+<td>".$row['insurance']."</td>
+
+<td>".$row['dob']."</td></tr>";
+
+}else{
+
+echo "<tr style='background-color: #fefefe;'> <td>".$row['billing']."</td>
+
+<td>".$row['amount_billed']."</td>
+
+<td>".$row['amount_paid']."</td>
+
+<td>".$row['date_paid']."</td>
+
+<td>".$row['insurance']."</td>
+
+<td>".$row['dob']."</td>><tr>";
+
+}
+
+$i++;
+
+}
+
+}else{
+
+echo "Not found";
+
+}
+
+?>
+
+</table>
+
+</body>
+
+</html>
